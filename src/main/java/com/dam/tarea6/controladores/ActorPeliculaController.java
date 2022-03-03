@@ -51,7 +51,13 @@ public class ActorPeliculaController {
 		return "hello world";
 	}*/
 
-	//BUSCAR PELICULAS POR ACTOR
+	/**
+	 * Método que buscará las películas por el actor que pasemos por parámetro. 
+	 * @param searchedActor Objeto Actor
+	 * @param model
+	 * @return showPeliculas. Retorna la vista html que muestra las películas.
+	 * @throws Exception En el caso de que los parámetros de búsqueda sean erróneos. 
+	 */
 	@PostMapping("/actSearchPeliculasByActor")
 	public String submitBuscarPeliculasByActorForm(@ModelAttribute Actor searchedActor, Model model) throws Exception {
 		
@@ -76,7 +82,13 @@ public class ActorPeliculaController {
 		return "showPeliculas";
 	}
 	
-	//BUSCAR ACTOR POR PELÍCULAS
+	/**
+	 * Método que buscará los actores por la película que pasemos por parámetro. 
+	 * @param searchedPelicula Objeto Película
+	 * @param model
+	 * @return showActors. Retorna la vista html que muestra los actores.
+	 * @throws Exception En el caso de que los parámetros de búsqueda sean erróneos. 
+	 */
 		@PostMapping("/actSearchActorsByPelicula")
 		public String submitBuscarActorsByPeliculaForm(@ModelAttribute Pelicula searchedPelicula, Model model) throws Exception {
 			
@@ -103,6 +115,12 @@ public class ActorPeliculaController {
 			return "showActors";
 		}
 
+	/**
+	 * Método que mostrará todos los actores_pelicula cuando lo llamemos desde el index. 
+	 * @param model
+	 * @return showActorPeliculas. Retorna la vista html que muestra los objetos ActorPelicula
+	 * mi base de datos.
+	 */
 	@GetMapping("/showActorPeliculasView")
 	public String mostrarActores(Model model) {
 		
@@ -163,6 +181,13 @@ public class ActorPeliculaController {
 		return "searchActorsByPelicula";
 	}
 
+	/**
+	 * Método que añade un objeto ActorPelicula a nuestra base de datos.
+	 * @param newActorPelicula Objeto ActorPeliculaModelo
+	 * @param result Respuesta que indica si hay algún error al introducir los parámetros.
+	 * @return "redirect:index" Redirecciona a la vista de index,
+	 * @throws Exception En el caso de que los parámetros de búsqueda sean erróneos. 
+	 */
 	@PostMapping("/actAddActorPelicula")
 	private String anadirActorPelicula(@Valid @ModelAttribute ActorPeliculaModelo newActorPelicula, BindingResult result)
 			throws Exception {
@@ -184,6 +209,13 @@ public class ActorPeliculaController {
 		return "redirect:index";
 	}
 	
+	/**
+	 * Método que eliminará el ActorPelicula que tenga el id que le pasamos por parámetro. 
+	 * @param actorPeliculaId Id del ActorPelicula
+	 * @param model
+	 * @return "redirect:showActorPeliculasView" Redirecciona a la vista que contiene
+	 * la lista de objetos ActorPelicula de mi base de datos  
+	 */
 	@PostMapping("/actDropActorPelicula")
 	public String eliminarPeliculas(@RequestParam String actorPeliculaId, Model model) {
 

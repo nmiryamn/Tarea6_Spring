@@ -37,6 +37,12 @@ public class PeliculaController {
 		return "hello world";
 	}*/
 
+	/**
+	 * Método que mostrará todas las películas cuando lo llamemos desde el index. 
+	 * Usaremos nuestra entidad modelo. 
+	 * @param model
+	 * @return showPeliculas. Esta es la vista html que muestra las películas.
+	 */
 	@GetMapping("/showPeliculasView")
 	public String mostrarPeliculas(Model model) {
 
@@ -58,11 +64,6 @@ public class PeliculaController {
 			}
 		}
 		
-		for (PeliculaModelo pelicula : peliculaModeloList) {
-			System.out.println("hola"+pelicula.toString());
-		}
-		
-		
 		// Carga de datos al modelo
 		model.addAttribute("peliculasListView", peliculaModeloList);
 		model.addAttribute("btnDropActorEnabled", Boolean.FALSE);
@@ -70,6 +71,12 @@ public class PeliculaController {
 		return "showPeliculas";
 	}
 
+	/**
+	 * Método que eliminará la película que tenga el id que le pasamos por parámetro. 
+	 * @param peliculaId Id de la película
+	 * @param model
+	 * @return "redirect:showActorsView" Redirecciona a showActorsView  
+	 */
 	@PostMapping("/actDropPelicula")
 	public String eliminarPeliculas(@RequestParam String peliculaId, Model model) {
 
@@ -80,6 +87,13 @@ public class PeliculaController {
 
 	}
 
+	/**
+	 * Método que busca películas por título o año. 
+	 * @param searchedPelicula 
+	 * @param model
+	 * @return "showPeliculas" La vista que lista todas las películas
+	 * @throws Exception En el caso de que los parámetros de búsqueda sean erróneos. 
+	 */
 	@PostMapping("/actSearchPelicula")
 	public String submitBuscarActorForm(@ModelAttribute Pelicula searchedPelicula, Model model) throws Exception {
 
@@ -128,6 +142,13 @@ public class PeliculaController {
 
 	}
 
+	/**
+	 * Método que añade una nueva película a la base de datos mediante el objeto PeliculaModelo que pasamos por parámetro.
+	 * @param newPelicula Objeto PeliculaModelo que usaremos para añadir una nueva película.
+	 * @param result Respuesta que indica si hay algún error al introducir los parámetros.
+	 * @return "redirect:showPeliculasView" Redirecciona a showPeliculasView  
+	 * @throws Exception En el caso de que los parámetros de búsqueda sean erróneos. 
+	 */
 	@PostMapping("/actAddPelicula")
 	private String aniadirPelicula(@Valid @ModelAttribute PeliculaModelo newPelicula,  BindingResult result) throws Exception {
 		
@@ -149,7 +170,14 @@ public class PeliculaController {
 		return "redirect:showPeliculasView";
 	}
 
-	
+	/**
+	 * Método en el que a partir del id de actor pasado por parámetro obtenemos una película
+	 * y añadimos el atributo al modelo. 
+	 * @param peliculaId Id de la película.
+	 * @param model
+	 * @return "updatePelicula" Retorna la vista de actualización de una película. 
+	 * @throws Exception En el caso de que los parámetros de búsqueda sean erróneos. 
+	 */
 	@PostMapping("/actSetPelicula")
 	public String actualizaSeteaPeliculas(@RequestParam String peliculaId, Model model) throws Exception {
 		// Actualización de película
@@ -161,6 +189,13 @@ public class PeliculaController {
 		return "updatePelicula";
 	}
 	
+	/**
+	 * Método que actualiza una película que le pasemos por parámetro.
+	 * @param newPelicula Objeto Pelicula
+	 * @param result Respuesta que indica si hay algún error al introducir los parámetros.
+	 * @return "redirect:showPeliculasView" Redirecciona a showPeliculasView
+	 * @throws Exception En el caso de que los parámetros de búsqueda sean erróneos. 
+	 */
 	@PostMapping("/actUpdatePelicula")
 	public String actualizaPeliculas(@Valid @ModelAttribute Pelicula newPelicula, BindingResult result) throws Exception {
 		// Actualización de película

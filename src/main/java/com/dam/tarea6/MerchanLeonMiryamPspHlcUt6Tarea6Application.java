@@ -25,6 +25,9 @@ public class MerchanLeonMiryamPspHlcUt6Tarea6Application implements CommandLineR
 		SpringApplication.run(MerchanLeonMiryamPspHlcUt6Tarea6Application.class, args);
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void run(String... args) throws Exception {
 

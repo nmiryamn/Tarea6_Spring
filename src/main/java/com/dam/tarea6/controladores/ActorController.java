@@ -38,6 +38,12 @@ public class ActorController {
 		return "hello world";
 	}
 
+	/**
+	 * Método que mostrará todos los actores cuando lo llamemos desde el index. 
+	 * Usaremos nuestra entidad modelo. 
+	 * @param model
+	 * @return showActors. Retorna la vista html que muestra los actores.
+	 */
 	@GetMapping("/showActorsView")
 	public String mostrarActores(Model model) {
 
@@ -66,6 +72,12 @@ public class ActorController {
 		return "showActors";
 	}
 
+	/**
+	 * Método que eliminará el actor que tenga el id que le pasamos por parámetro. 
+	 * @param actorId Id del actor
+	 * @param model
+	 * @return "redirect:showActorsView" Redirecciona a showActorsView  
+	 */
 	@PostMapping("/actDropActor")
 	public String eliminarActor(@RequestParam String actorId, Model model) {
 
@@ -76,6 +88,13 @@ public class ActorController {
 
 	}
 
+	/**
+	 * Método que busca actores por nombre, nacionalidad o apellido. 
+	 * @param searchedActor 
+	 * @param model
+	 * @return "showActors" La vista que lista todos los actores
+	 * @throws Exception En el caso de que los parámetros de búsqueda sean erróneos. 
+	 */
 	@PostMapping("/actSearchActor")
 	public String submitBuscarActorForm(@ModelAttribute Actor searchedActor, Model model) throws Exception {
 
@@ -124,6 +143,13 @@ public class ActorController {
 
 	}
 
+	/**
+	 * Método que añade un nuevo actor a la base de datos mediante el actor modelo que pasamos por parámetro.
+	 * @param newActor Objeto ActorModelo que usaremos para añadir un nuevo actor.
+	 * @param result Respuesta que indica si hay algún error al introducir los parámetros.
+	 * @return "redirect:showActorsView" Redirecciona a showActorsView  
+	 * @throws Exception En el caso de que los parámetros de búsqueda sean erróneos. 
+	 */
 	@PostMapping("/actAddActor")
 	private String aniadirActor(@Valid @ModelAttribute ActorModelo newActor, BindingResult result) throws Exception {
 
@@ -150,6 +176,14 @@ public class ActorController {
 		return "redirect:showActorsView";
 	}
 	
+	/**
+	 * Método en el que a partir del id de actor pasado por parámetro obtenemos un actor
+	 * y añadimos el atributo al modelo. 
+	 * @param actorId Id del actor.
+	 * @param model
+	 * @return "updateActor" Retorna la vista de actualización de actor. 
+	 * @throws Exception En el caso de que los parámetros de búsqueda sean erróneos. 
+	 */
 	@PostMapping("/actSetActor")
 	public String actualizaSeteaActor(@RequestParam String actorId, Model model) throws Exception {
 		// Actualización de película
@@ -161,11 +195,16 @@ public class ActorController {
 		return "updateActor";
 	}
 	
+	/**
+	 * Método que actualiza un actor que le pasemos por parámetro.
+	 * @param newActor Objeto Actor
+	 * @param result Respuesta que indica si hay algún error al introducir los parámetros.
+	 * @return "redirect:showActorsView" Redirecciona a showActorsView
+	 * @throws Exception En el caso de que los parámetros de búsqueda sean erróneos. 
+	 */
 	@PostMapping("/actUpdateActor")
 	public String actualizaActores(@Valid @ModelAttribute Actor newActor, BindingResult result) throws Exception {
 		// Actualización de película
-		
-		System.out.println(newActor.toString());
 		
 		if (result.hasErrors()) {
 			throw new Exception("Parámetros de actor erróneos");

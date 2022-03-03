@@ -5,6 +5,13 @@
 		<title>CINE</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<style>
+			body{
+				background-image: url("https://wallpapercave.com/wp/wp4016022.jpg");
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+		</style>
 	</head>
 	<body class="card-body">
 		<div class="card text-white bg-dark mb-3">
@@ -34,14 +41,14 @@
 									<form action="actSetPelicula" method="post">
 										<button th:disabled="${btnUpdatePeliculaEnabled}" type="submit"
 											id="btnUpdatePelicula" name="peliculaId" th:value="${pelicula.id}"
-											class="btn btn-danger">▼</button>
+											class="btn btn-success">✔</button>
 									</form>
 								</td>
 								<td scope="row" th:hidden="${btnDropPeliculaEnabled}">
 									<form action="actDropPelicula" method="post">
 										<button th:disabled="${btnDropPeliculaEnabled}" type="submit"
 											id="btnDropPelicula" name="peliculaId" th:value="${pelicula.id}"
-											class="btn btn-danger">▼</button>
+											class="btn btn-danger">❌</button>
 									</form>
 								</td>
 							</tr>
