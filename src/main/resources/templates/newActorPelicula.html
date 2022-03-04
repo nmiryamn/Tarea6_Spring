@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head
+	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>CINE</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -21,14 +21,14 @@
 					<div class="form-group">
 						<label for="inpActor">Actor</label>
 						<select class="form-control" name="actor">
-							<option th:each="actor : ${actorListView}" th:value="${actor.id}" th:text="${actor.id}"></option>
+							<option th:each="actor : ${actorListView}" th:value="${actor.id}" th:text="${actor.name} + ' ' + ${actor.surname}"></option>
 						</select>
 					</div>
 
 				<div class="form-group">
 					<label for="inpJugador">Película</label>
 					<select class="form-control" name="pelicula">
-						<option th:each="pelicula : ${peliculaListView}" th:value="${pelicula.id}" th:text="${pelicula.id}"></option>
+						<option th:each="pelicula : ${peliculaListView}" th:value="${pelicula.id}" th:text="${pelicula.title}"></option>
 					</select>
 				</div>
 					<button type="submit" name="btnAddActorPelicula" class="btn btn-success">Añadir</button>

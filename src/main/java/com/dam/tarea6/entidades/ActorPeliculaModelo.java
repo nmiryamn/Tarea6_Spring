@@ -4,6 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Clase auxiliar de ActorPelicula
+ * @author Usuario
+ *
+ */
 @Data @AllArgsConstructor @NoArgsConstructor
 public class ActorPeliculaModelo {
 	

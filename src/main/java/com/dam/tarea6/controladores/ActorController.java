@@ -25,10 +25,17 @@ import com.dam.tarea6.entidades.ActorModelo;
 import com.dam.tarea6.entidades.Pelicula;
 import com.dam.tarea6.servicios.ActorServiceI;
 
-
+/**
+ * 
+ * @author Usuario
+ *
+ */
 @Controller
 public class ActorController {
 
+	/**
+	 * Objeto de mi servicio de Actor
+	 */
 	@Autowired
 	private ActorServiceI actorServiceI;
 	
@@ -41,7 +48,7 @@ public class ActorController {
 	/**
 	 * Método que mostrará todos los actores cuando lo llamemos desde el index. 
 	 * Usaremos nuestra entidad modelo. 
-	 * @param model
+	 * @param model Objeto Model
 	 * @return showActors. Retorna la vista html que muestra los actores.
 	 */
 	@GetMapping("/showActorsView")
@@ -60,7 +67,7 @@ public class ActorController {
 				actorModelo.setName(actor.getName());
 				actorModelo.setSurname(actor.getSurname());
 				actorModelo.setNationality(actor.getNationality());
-				actorModelo.setBirthdate(String.valueOf(actor.getBirthdate()));
+				actorModelo.setBirthdate(actor.getBirthdate());
 				ActorModeloList.add(actorModelo);
 			}
 		}
@@ -75,7 +82,7 @@ public class ActorController {
 	/**
 	 * Método que eliminará el actor que tenga el id que le pasamos por parámetro. 
 	 * @param actorId Id del actor
-	 * @param model
+	 * @param model Objeto Model
 	 * @return "redirect:showActorsView" Redirecciona a showActorsView  
 	 */
 	@PostMapping("/actDropActor")
@@ -91,7 +98,7 @@ public class ActorController {
 	/**
 	 * Método que busca actores por nombre, nacionalidad o apellido. 
 	 * @param searchedActor 
-	 * @param model
+	 * @param model Objeto Model
 	 * @return "showActors" La vista que lista todos los actores
 	 * @throws Exception En el caso de que los parámetros de búsqueda sean erróneos. 
 	 */
@@ -152,23 +159,18 @@ public class ActorController {
 	 */
 	@PostMapping("/actAddActor")
 	private String aniadirActor(@Valid @ModelAttribute ActorModelo newActor, BindingResult result) throws Exception {
-
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
 		
-		Date date = formatter.parse(newActor.getBirthdate());
-		
-		Actor a = new Actor();
-		
-		a.setName(newActor.getName().toUpperCase());
-		a.setSurname(newActor.getSurname().toUpperCase());
-		a.setNationality(newActor.getNationality().toUpperCase());
-		a.setBirthdate(date);
-		
-
-		if (result.hasErrors()) {
+		if (result.hasErrors()) {			
 			throw new Exception("Parámetros de actor erróneos");
 		} else {
-			// Se añade el nuevo coche
+			
+			Actor a = new Actor();
+			
+			a.setName(newActor.getName().toUpperCase());
+			a.setSurname(newActor.getSurname().toUpperCase());
+			a.setNationality(newActor.getNationality().toUpperCase());
+			a.setBirthdate(newActor.getBirthdate());
+			
 			a.setActorPeliculas(null);
 			actorServiceI.anadirActor(a);
 		}
@@ -180,13 +182,12 @@ public class ActorController {
 	 * Método en el que a partir del id de actor pasado por parámetro obtenemos un actor
 	 * y añadimos el atributo al modelo. 
 	 * @param actorId Id del actor.
-	 * @param model
+	 * @param model Objeto Model
 	 * @return "updateActor" Retorna la vista de actualización de actor. 
 	 * @throws Exception En el caso de que los parámetros de búsqueda sean erróneos. 
 	 */
 	@PostMapping("/actSetActor")
 	public String actualizaSeteaActor(@RequestParam String actorId, Model model) throws Exception {
-		// Actualización de película
 		
 		Actor a = actorServiceI.obtenerActorPorId(Long.valueOf(actorId));
 	
@@ -204,7 +205,6 @@ public class ActorController {
 	 */
 	@PostMapping("/actUpdateActor")
 	public String actualizaActores(@Valid @ModelAttribute Actor newActor, BindingResult result) throws Exception {
-		// Actualización de película
 		
 		if (result.hasErrors()) {
 			throw new Exception("Parámetros de actor erróneos");

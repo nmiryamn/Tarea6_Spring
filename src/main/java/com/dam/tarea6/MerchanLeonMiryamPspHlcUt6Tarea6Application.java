@@ -44,7 +44,7 @@ public class MerchanLeonMiryamPspHlcUt6Tarea6Application implements CommandLineR
 				actorModelo.setName(actor.getName());
 				actorModelo.setSurname(actor.getSurname());
 				actorModelo.setNationality(actor.getNationality());
-				actorModelo.setBirthdate(String.valueOf(actor.getBirthdate()));
+				actorModelo.setBirthdate(actor.getBirthdate());
 				System.out.println(actorModelo.toString());
 			}
 		}

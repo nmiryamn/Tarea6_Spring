@@ -10,12 +10,19 @@ import com.dam.tarea6.entidades.ActorPelicula;
 import com.dam.tarea6.entidades.Pelicula;
 import com.dam.tarea6.repositorio.ActorPeliculaRepositorio;
 
+/**
+ * 
+ * @author Usuario
+ *
+ */
 @Service
 public class ActorPeliculaServiceImpl implements ActorPeliculaServiceI{
 	
+	/**
+	 * Objeto de mi repositorio de Actor
+	 */
 	@Autowired
 	private ActorPeliculaRepositorio actorPeliculaRepositorio;
-
 
 	@Override
 	public List<ActorPelicula> obtenerActorPeliculaPorIdActor(long idActor) {

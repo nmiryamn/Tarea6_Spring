@@ -30,6 +30,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 
+ * @author Usuario
+ *
+ */
 @Entity
 @Table(name = "Actor")
 @Data @AllArgsConstructor @NoArgsConstructor
@@ -40,32 +45,45 @@ public class Actor implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	/** Identificador de actores (PK) */
+	/**
+	 * Identificador de la entidad Actor
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	/** Nombre del actor/actriz */
+	/**
+	 * Nombre del actor/actriz
+	 */
 	@NotEmpty(message = "No puede estar vacío el nombre")
 	@Size(min = 3, max = 20, message = "El tamaño del nombre debe estar entre 3 y 20 caracteres")
 	private String name;
 
-	/** Apellido del actor/actriz */
+	/**
+	 * Apellido del actor/actriz
+	 */
 	@NotEmpty(message = "No puede estar vacío el apellido")
 	@Size(min = 5, max = 50, message = "El tamaño del apellido debe estar entre 5 y 50 caracteres")
 	private String surname;
 	
-	/** Fecha de nacimiento del actor/actriz */
+	/**
+	 * Fecha de nacimiento del actor/actriz
+	 */
 	@NotNull(message = "No puede estar vacía la fecha")
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthdate;
 	
-	/** Nacionalidad del actor/actriz */
+	/**
+	 * Nacionalidad del actor/actriz
+	 */
 	@NotEmpty(message = "No puede estar vacía la nacionalidad")
 	@Size(min = 5, max = 50, message = "El tamaño del apellido debe estar entre 3 y 20 caracteres")
 	private String nationality;
 	
+	/**
+	 * Lista de nuestra entidad ActorPelicula
+	 */
 	@OneToMany(mappedBy = "actor", cascade = CascadeType.REMOVE)
 	private List<ActorPelicula> actorPeliculas;
 

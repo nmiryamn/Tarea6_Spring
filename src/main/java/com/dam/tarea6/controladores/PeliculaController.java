@@ -25,9 +25,17 @@ import com.dam.tarea6.entidades.Pelicula;
 import com.dam.tarea6.entidades.PeliculaModelo;
 import com.dam.tarea6.servicios.PeliculaServiceI;
 
+/**
+ * 
+ * @author Usuario
+ *
+ */
 @Controller
 public class PeliculaController {
 
+	/**
+	 * Objeto de mi servicio de películas
+	 */
 	@Autowired
 	private PeliculaServiceI peliculaServiceI;
 	
@@ -40,7 +48,7 @@ public class PeliculaController {
 	/**
 	 * Método que mostrará todas las películas cuando lo llamemos desde el index. 
 	 * Usaremos nuestra entidad modelo. 
-	 * @param model
+	 * @param model Objeto Model
 	 * @return showPeliculas. Esta es la vista html que muestra las películas.
 	 */
 	@GetMapping("/showPeliculasView")
@@ -74,7 +82,7 @@ public class PeliculaController {
 	/**
 	 * Método que eliminará la película que tenga el id que le pasamos por parámetro. 
 	 * @param peliculaId Id de la película
-	 * @param model
+	 * @param model Objeto Model
 	 * @return "redirect:showActorsView" Redirecciona a showActorsView  
 	 */
 	@PostMapping("/actDropPelicula")
@@ -90,7 +98,7 @@ public class PeliculaController {
 	/**
 	 * Método que busca películas por título o año. 
 	 * @param searchedPelicula 
-	 * @param model
+	 * @param model Objeto Model
 	 * @return "showPeliculas" La vista que lista todas las películas
 	 * @throws Exception En el caso de que los parámetros de búsqueda sean erróneos. 
 	 */
@@ -160,7 +168,7 @@ public class PeliculaController {
 		p.setSummary(newPelicula.getSummary().toUpperCase());
 
 		if (result.hasErrors()) {
-			throw new Exception("Parámetros de p erróneos");
+			throw new Exception("Parámetros de película erróneos");
 		} else {
 			// Se añade la nueva película
 			p.setActorPeliculas(null);
@@ -174,7 +182,7 @@ public class PeliculaController {
 	 * Método en el que a partir del id de actor pasado por parámetro obtenemos una película
 	 * y añadimos el atributo al modelo. 
 	 * @param peliculaId Id de la película.
-	 * @param model
+	 * @param model Objeto Model
 	 * @return "updatePelicula" Retorna la vista de actualización de una película. 
 	 * @throws Exception En el caso de que los parámetros de búsqueda sean erróneos. 
 	 */

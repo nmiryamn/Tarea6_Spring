@@ -28,22 +28,32 @@ import com.dam.tarea6.servicios.ActorPeliculaServiceI;
 import com.dam.tarea6.servicios.ActorServiceI;
 import com.dam.tarea6.servicios.PeliculaServiceI;
 
-
+/**
+ * 
+ * @author Usuario
+ *
+ */
 @Controller
 public class ActorPeliculaController {
 
+	/**
+	 * Objeto de mi servicio de Actor Película
+	 */
 	@Autowired
 	private ActorPeliculaServiceI actorPeliculaServiceI;
 
+	/**
+	 * Objeto de mi servicio de Actor 
+	 */
 	@Autowired
 	private ActorServiceI actorServiceI;
 
+	/**
+	 * Objeto de mi servicio de Película 
+	 */
 	@Autowired
 	private PeliculaServiceI peliculaServiceI;
 
-	//private List<Equipo> listaEquipos = null;
-
-	//private List<Futbolista> listaJugadores = null;
 
 	/*@RequestMapping("/home")
 	@ResponseBody
@@ -54,7 +64,7 @@ public class ActorPeliculaController {
 	/**
 	 * Método que buscará las películas por el actor que pasemos por parámetro. 
 	 * @param searchedActor Objeto Actor
-	 * @param model
+	 * @param model Objeto Model
 	 * @return showPeliculas. Retorna la vista html que muestra las películas.
 	 * @throws Exception En el caso de que los parámetros de búsqueda sean erróneos. 
 	 */
@@ -85,7 +95,7 @@ public class ActorPeliculaController {
 	/**
 	 * Método que buscará los actores por la película que pasemos por parámetro. 
 	 * @param searchedPelicula Objeto Película
-	 * @param model
+	 * @param model Objeto Model
 	 * @return showActors. Retorna la vista html que muestra los actores.
 	 * @throws Exception En el caso de que los parámetros de búsqueda sean erróneos. 
 	 */
@@ -117,7 +127,7 @@ public class ActorPeliculaController {
 
 	/**
 	 * Método que mostrará todos los actores_pelicula cuando lo llamemos desde el index. 
-	 * @param model
+	 * @param model Objeto Mode
 	 * @return showActorPeliculas. Retorna la vista html que muestra los objetos ActorPelicula
 	 * mi base de datos.
 	 */
@@ -131,23 +141,29 @@ public class ActorPeliculaController {
 		final List<ActorPeliculaModelo> ActorPeliculaModeloList = new ArrayList<>();
 		
 		if (!CollectionUtils.isEmpty(ActorPeliculaList)) {
-			for (ActorPelicula actor : ActorPeliculaList) {
-					
+			for (ActorPelicula actor : ActorPeliculaList) {					
 					actorPeliculaModelo = new ActorPeliculaModelo();
 					actorPeliculaModelo.setId(actor.getId());
-					actorPeliculaModelo.setActor(String.valueOf(actor.getActor().getId()));
-					actorPeliculaModelo.setPelicula(String.valueOf(actor.getPelicula().getId()));
+					actorPeliculaModelo.setActor(String.valueOf(actor.getActor().getName()));
+					actorPeliculaModelo.setPelicula(String.valueOf(actor.getPelicula().getTitle()));
 					ActorPeliculaModeloList.add(actorPeliculaModelo);
 				}
 			}
 		
 
 		model.addAttribute("actorPeliculasListView", ActorPeliculaModeloList);
+		model.addAttribute("actoresListView", actorServiceI.obtenerTodos());
 		model.addAttribute("btnDropActorEnabled", Boolean.FALSE);
 
 		return "showActorPeliculas";
 	}
 	
+	/**
+	 * Método que añade al modelo los atributos de las listas para
+	 * después acceder a ellas desde la vista de "newActorPelicula"
+	 * @param model Objeto Model
+	 * @return "newActorPelicula" Retorna la vista de añadir un nuevo objeto ActorPelícula
+	 */
 	@GetMapping("/actAddLists")
 	private String anadirLista(Model model) {
 
@@ -161,6 +177,12 @@ public class ActorPeliculaController {
 		return "newActorPelicula";
 	}
 	
+	/**
+	 * Método que añade al modelo los atributos de la lista de actores para
+	 * después acceder a ellas desde la vista de "searchPeliculasByActor"
+	 * @param model Objeto Model
+	 * @return "searchPeliculasByActor" Retorna la vista de buscar películas por un actor en concreto
+	 */
 	@GetMapping("/actAddActorLists")
 	private String anadirListaActor(Model model) {
 
@@ -171,6 +193,12 @@ public class ActorPeliculaController {
 		return "searchPeliculasByActor";
 	}
 	
+	/**
+	 * Método que añade al modelo los atributos de la lista de películas para
+	 * después acceder a ellas desde la vista de "searchActorsByPelicula"
+	 * @param model Objeto Model
+	 * @return "searchActorsByPelicula" Retorna la vista de buscar actores por una película en concreto
+	 */
 	@GetMapping("/actAddPeliculaLists")
 	private String anadirListaPelicula(Model model) {
 
@@ -192,16 +220,17 @@ public class ActorPeliculaController {
 	private String anadirActorPelicula(@Valid @ModelAttribute ActorPeliculaModelo newActorPelicula, BindingResult result)
 			throws Exception {
 
-		Pelicula p = peliculaServiceI.obtenerPeliculaPorId(Long.valueOf(newActorPelicula.getActor()));
-		Actor a = actorServiceI.obtenerActorPorId(Long.valueOf(newActorPelicula.getPelicula()));
-
-		ActorPelicula ap = new ActorPelicula();
-		ap.setActor(a);
-		ap.setPelicula(p);
-
 		if (result.hasErrors()) {
-			throw new Exception("Parámetros de matriculación erróneos");
+			
+			throw new Exception("Parámetros erróneos");
 		} else {
+			Pelicula p = peliculaServiceI.obtenerPeliculaPorId(Long.valueOf(newActorPelicula.getActor()));
+			Actor a = actorServiceI.obtenerActorPorId(Long.valueOf(newActorPelicula.getPelicula()));
+
+			ActorPelicula ap = new ActorPelicula();
+			ap.setActor(a);
+			ap.setPelicula(p);
+			
 			actorPeliculaServiceI.anadirActorPelicula(ap);
 
 		}
@@ -212,7 +241,7 @@ public class ActorPeliculaController {
 	/**
 	 * Método que eliminará el ActorPelicula que tenga el id que le pasamos por parámetro. 
 	 * @param actorPeliculaId Id del ActorPelicula
-	 * @param model
+	 * @param model Objeto Model
 	 * @return "redirect:showActorPeliculasView" Redirecciona a la vista que contiene
 	 * la lista de objetos ActorPelicula de mi base de datos  
 	 */

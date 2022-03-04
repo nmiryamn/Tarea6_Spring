@@ -21,7 +21,7 @@
 				  	<div class="form-group">
 			  			<label for="inpPelicula">Id</label>
 						<select class="form-control" name="pelicula">
-						<option th:each="pelicula : ${peliculaListView}" th:value="${pelicula.id}" th:utext="${pelicula.id}"></option>
+						<option th:each="pelicula : ${peliculaListView}" th:value="${pelicula.id}" th:utext="${pelicula.title}"></option>
 						</select>
 						<!--<input type="text" text-transform: "capitalize" class="form-control" id="inpFutRegs" name="id" placeholder="Id">-->
 					</div>

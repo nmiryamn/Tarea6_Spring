@@ -10,25 +10,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SystemController {
 	
 	
-	//Capta cualquier solicitud
+	/**
+	 * Método que nos redirecciona a nuestro index
+	 * @return "index"
+	 */
 	@GetMapping
 	public String showIndex() {
 		return "index";
 	}
 	
-	//Redirecciona al controlador de gestión de actores
+	/**
+	 * Método que nos redirecciona a nuestro método que muestra los actores
+	 * @return "redirect:showActorsView" Retorna la redirección a dicho método
+	 */
 	@GetMapping("/actorsView")
 	public String redirectToActorDealershipController() {
 		return "redirect:showActorsView";
 	}
 	
-	//Redirecciona a la plantilla de búsqueda
+	/**
+	 * Método que nos redirecciona a nuestra vista que busca los actores por diferentes parámetros
+	 * @return "searchActorBy". Retorna la vista html.
+	 */
 	@GetMapping("/searchActorByView")
 	public String redirectToAtorSearchByTemplate() {
 		return "searchActorBy";
 	}
 	
-	//Redirecciona a la plantilla de insercción
+	/**
+	 * Método que nos redirecciona a la plantilla de añadir Actor
+	 * @return "newActor" Retorna la vista que añade un actor.
+	 */
 	@GetMapping("/newActorView")
 	public String redirectToNewActorTemplate() {
 		return "newActor";
@@ -36,19 +48,27 @@ public class SystemController {
 	
 	//---------------------------------------------------------
 	
-	//Redirecciona al controlador de gestión de películas
+	/**
+	 * Método que nos redirecciona al método que muestra la vista de películas
+	 * @return "redirect:showPeliculasView" Retorna la redirección a dicho método
+	 */
 	@GetMapping("/peliculasView")
 	public String redirectToPeliculaDealershipController() {
 		return "redirect:showPeliculasView";
 	}
-		
-		//Redirecciona a la plantilla de búsqueda
+		/**
+		 * Método que nos redirecciona a la plantilla de búsqueda de películas
+		 * @return "searchPeliculaBy" Retorna la vista con la que buscamos una película por distintos parámetros
+		 */
 		@GetMapping("/searchPeliculaByView")
 		public String redirectToPeliculaSearchByTemplate() {
 			return "searchPeliculaBy";
 		}
 		
-		//Redirecciona a la plantilla de insercción
+		/**
+		 * Método que nos redirecciona a la plantilla de inserción de películas
+		 * @return "newPelicula" Retorna la vista con la que insertamos una nueva película
+		 */
 		@GetMapping("/newPeliculaView")
 		public String redirectToNewPeliculaTemplate() {
 			return "newPelicula";
@@ -56,24 +76,40 @@ public class SystemController {
 		
 	//----------------------------------------------------------
 		
+		/**
+		 * Método que nos redirecciona al método que muestra los objetos ActorPelicula
+		 * @return "redirect:showActorPeliculasView" Retorna la redirección a dicho método
+		 */
 		@GetMapping("/actorPeliculasView")
 		public String redirectToActorPeliculaDealershipController() {
 			return "redirect:showActorPeliculasView";
 		}
 		
-		//Redirecciona a la plantilla de insercción
+		/**
+		 * Método que nos redirecciona al método que añade los atributos de listas al modelo
+		 * para posteriormente usarlas al añadir un objeto ActorPelicula
+		 * @return "redirect:actAddLists". Retorna la redirección a dicho método
+		 */
 		@GetMapping("/newActorPeliculaView")
 		public String redirectToNewActorPelicula() {
 			return "redirect:actAddLists";
 		}
 		
-		//Redirecciona a la plantilla de insercción
+		/**
+		 * Método que nos redirecciona al método que añade la lista de actores al modelo
+		 * para posteriormente usarlas al buscar películas por actor
+		 * @return "redirect:actAddActorLists". Retorna la redirección a dicho método.
+		 */
 		@GetMapping("/showPeliculasByActorView")
 		public String redirectToSearchByActor() {
 			return "redirect:actAddActorLists";
 		}
 		
-		//Redirecciona a la plantilla de insercción
+		/**
+		 * Método que nos redirecciona al método que añade la lista de películas al modelo
+		 * para posteriormente usarlas al buscar actores por película
+		 * @return "redirect:actAddPeliculaLists". Retorna la redirección a dicho método.
+		 */
 		@GetMapping("/showActorsByPeliculaView")
 		public String redirectToSearchByPelicula() {
 			return "redirect:actAddPeliculaLists";

@@ -7,6 +7,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Clase auxiliar de la entidad Pelicula
+ * @author Usuario
+ *
+ */
 @Data @AllArgsConstructor @NoArgsConstructor
 public class PeliculaModelo {
 
