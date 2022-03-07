@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>CINE</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<style>
+			body{
+				background-image: url("https://wallpapercave.com/wp/wp4016022.jpg");
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+		</style>
+	</head>
+	<body class="card-body">
+		<div class="card text-white bg-dark mb-3">
+		  <div class="card-header">Búsqueda de actores</div>
+		  <div class="card-body">
+				<form th:action="@{/actSearchActor}" th:object="${searchedActor}" method="POST">
+					<div class="form-group">
+			  			<label for="inpName">Nombre</label>
+			  			<input type="text" class="form-control" id="inpTcarRegistr" name="name" placeholder="Nombre del actor">
+					</div>
+					<div class="form-group">
+						  <label for="inpSurname">Apellidos</label>
+						  <input type="text" class="form-control" id="inpTbrand" name="surname" placeholder="Apellido">
+					</div>
+					<div class="form-group">
+						  <label for="inpNationality">Nacionalidad</label>
+						  <input type="text" class="form-control" id="inpTmodel" name="nationality" placeholder="Nacionalidad">
+					</div>
+					<button type="submit" name="btnSearchActorBy" class="btn btn-success">Buscar</button>
+					<a class="btn btn-primary" href="index" role="button" id="aBtnReturn">Volver</a>
+				</form>
+			  </div>
+			</div>
+	</body>
+</html>

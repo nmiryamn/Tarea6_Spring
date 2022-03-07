@@ -20,7 +20,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Range;
 
 import com.dam.tarea6.entidades.Actor;
 
@@ -50,12 +53,12 @@ public class Pelicula implements Serializable{
 	private String title;
 	
 	/** Año de la película */
-	@NotEmpty(message = "No puede estar vacío el año")
-	@Size(min = 4, max = 4, message = "Año incorrecto")
+	@Range(min=1888, max=2022, message="No es un año válido")
 	private Integer year;
 	
 	/** Duración de la película */
 	@NotNull(message = "No puede estar vacía la duración")
+	//@Pattern(regexp = "([0-9]+)h([0-9]+)m", message = "Formato de la duración de la película incorrecto")
 	private String duration;
 	
 	/** Resumen de la película */

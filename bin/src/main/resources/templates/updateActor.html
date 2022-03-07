@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>CINE</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<style>
+			body{
+				background-image: url("https://wallpapercave.com/wp/wp4016022.jpg");
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+		</style>
+	</head>
+		<body class="card-body">
+		<div class="card text-white bg-dark mb-3">
+		  <div class="card-header">Datos del actor actualizado</div>
+		  <div class="card-body">
+				<form th:action="@{/actUpdateActor}" th:object="${newActor}" method="POST">
+					<input type="text" required="required" class="form-control" id="inpActorId" hidden name="id" th:value="${actor.id}">
+					<div class="form-group">
+			  			<label for="inpCarRegs">Nombre</label>
+			  			<input type="text" required="required" class="form-control" id="inpActorName" name="name" placeholder="Nombre" th:value="${actor.name}">
+					</div>
+					<div class="form-group">
+						  <label for="inpCarBrand">Apellidos</label>
+						  <input type="text" required="required" class="form-control" id="inpActorSurname" name="surname" placeholder="Apellidos" th:value="${actor.surname}">
+					</div>
+					<div class="form-group">
+						  <label for="inpCarModel">Nacionalidad</label>
+						  <input required="required" type="text" class="form-control" id="inpActorNationality" name="nationality" placeholder="Nacionalidad" th:value="${actor.nationality}">
+					</div>
+					<div class="form-group">
+						  <label for="inpCarBrand">Fecha de Nacimiento</label>
+						  <input type="date" required="required" class="form-control" id="inpActorBirthdate" name="birthdate" placeholder="Fecha de Nacimiento" th:value="${actor.birthdate}">
+					</div>
+					<button type="submit" name="btnUpdateActor" class="btn btn-success">Añadir</button>
+					<a class="btn btn-primary" href="index" role="button" id="aBtnReturn">Volver</a>
+				</form>
+			  </div>
+			</div>
+	</body>
+</html>

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dam.tarea6.entidades.Pelicula;
 import com.dam.tarea6.entidades.PeliculaModelo;
+import com.dam.tarea6.exception.InvalidDataException;
 import com.dam.tarea6.servicios.PeliculaServiceI;
 
 /**
@@ -160,16 +161,18 @@ public class PeliculaController {
 	@PostMapping("/actAddPelicula")
 	private String aniadirPelicula(@Valid @ModelAttribute PeliculaModelo newPelicula,  BindingResult result) throws Exception {
 		
-		Pelicula p = new Pelicula();
-		
-		p.setTitle(newPelicula.getTitle().toUpperCase());
-		p.setYear(newPelicula.getYear());
-		p.setDuration(newPelicula.getDuration().toUpperCase());
-		p.setSummary(newPelicula.getSummary().toUpperCase());
 
 		if (result.hasErrors()) {
-			throw new Exception("Parámetros de película erróneos");
+			throw new InvalidDataException(result);
 		} else {
+			
+			Pelicula p = new Pelicula();
+			
+			p.setTitle(newPelicula.getTitle());
+			p.setYear(newPelicula.getYear());
+			p.setDuration(newPelicula.getDuration());
+			p.setSummary(newPelicula.getSummary());
+			
 			// Se añade la nueva película
 			p.setActorPeliculas(null);
 			peliculaServiceI.anadirPelicula(p);
@@ -209,7 +212,7 @@ public class PeliculaController {
 		// Actualización de película
 		
 		if (result.hasErrors()) {
-			throw new Exception("Parámetros de película erróneos");
+			throw new InvalidDataException(result);
 		} else {
 			// Se añade la nueva película
 			peliculaServiceI.actualizarPelicula(newPelicula);

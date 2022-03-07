@@ -8,14 +8,14 @@ INSERT INTO pelicula(duration, summary, title, year) VALUES ('1h 32m','"Q" es un
 INSERT INTO pelicula(duration, summary, title, year) VALUES ('2h 23m','El director de la Agencia SHIELD decide reclutar a un equipo para salvar al mundo de un desastre casi seguro cuando un enemigo inesperado surge como una gran amenaza para la seguridad mundial.','The Avengers',2012); 
 INSERT INTO pelicula(duration, summary, title, year) VALUES ('2h 3m','Enola Holmes, una intrépida joven que busca a su madre, utiliza su brillante instinto investigador para superar a su hermano Sherlock y ayudar a un lord en su fuga.','Enola Holmes',2020); 
 
-INSERT INTO actor(birthdate, name, nationality, surname) VALUES ('1981-09-02','TOM','INGLÉS','HIDDLESTON'); 
-INSERT INTO actor(birthdate, name, nationality, surname) VALUES ('1983-05-05','HENRY','INGLÉS','CAVILL'); 
-INSERT INTO actor(birthdate, name, nationality, surname) VALUES ('1990-08-15','JENNIFER','AMERICANA','LAWRENCE'); 
-INSERT INTO actor(birthdate, name, nationality, surname) VALUES ('1968-07-25','WILL','AMERICANO','SMITH'); 
-INSERT INTO actor(birthdate, name, nationality, surname) VALUES ('1996-06-01','TOM','AMERICANO','HOLLAND'); 
-INSERT INTO actor(birthdate, name, nationality, surname) VALUES ('1974-10-11','LEONARDO','AMERICANO','DICAPRIO'); 
-INSERT INTO actor(birthdate, name, nationality, surname) VALUES ('1971-06-21','PEDRO','AMERICANO','ALONSO'); 
-INSERT INTO actor(birthdate, name, nationality, surname) VALUES ('1965-04-04','ROBERT','AMERICANO','DOWNEY JR.'); 
+INSERT INTO actor(birthdate, name, nationality, surname) VALUES ('1981-09-02','Tom','Inglés','Hiddleston'); 
+INSERT INTO actor(birthdate, name, nationality, surname) VALUES ('1983-05-05','Henry','Inglés','Cavill'); 
+INSERT INTO actor(birthdate, name, nationality, surname) VALUES ('1990-08-15','Jennifer','Americana','Lawrence'); 
+INSERT INTO actor(birthdate, name, nationality, surname) VALUES ('1968-07-25','Will','Americano','Smith'); 
+INSERT INTO actor(birthdate, name, nationality, surname) VALUES ('1996-06-01','Tom','Americano','Holland'); 
+INSERT INTO actor(birthdate, name, nationality, surname) VALUES ('1974-10-11','Leonardo','Americano','Dicraprio'); 
+INSERT INTO actor(birthdate, name, nationality, surname) VALUES ('1971-06-21','Pedro','Español','Alonso'); 
+INSERT INTO actor(birthdate, name, nationality, surname) VALUES ('1965-04-04','Robert','Americano','Downey JR.'); 
 
 INSERT INTO actor_pelicula(pelicula_id, actor_id) VALUES (1,1);
 INSERT INTO actor_pelicula(pelicula_id, actor_id) VALUES (2,2);

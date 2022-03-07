@@ -40,6 +40,7 @@ public class ActorModelo {
 	
 	/** Fecha de nacimiento del actor/actriz */
 	@NotNull(message = "No puede estar vacía la fecha")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthdate;
 	
 	/** Nacionalidad del actor/actriz */

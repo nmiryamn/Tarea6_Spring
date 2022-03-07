@@ -6,21 +6,19 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	</head>
-	<body class="card-body">
-
-		<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-		    <a class="navbar-brand" th:href="@{/actorsView}" role="button">Ver todos los actores</a>
-			<a class="navbar-brand" th:href="@{/searchActorByView}" role="button">Buscar actor</a>
-			<a class="navbar-brand" th:href="@{/newActorView}" role="button">Añadir actor</a>
-		</nav>
+	<body class="card-body bg-dark">
 	
-		<div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
-	  		<div class="card-header">Error</div>
+		<div class="card text-white bg-danger mx-auto mt-20" style="max-width: 40rem;">
+	  		<h5 class="card-header">Error</h5>
 	  		<div class="card-body">
-	    		<h5 class="card-title">Acción fallida:</h5>
-	    		<p class="card-text" th:text="${errorMsg}"/>
+	    		<div th:each="error : ${errorMsg}">
+	    			<ul class="list-group">
+	    			<li class="list-group-item list-group-item-danger" th:text="${error}"/>
+	    			</ul>
+	    		</div>
 	  		</div>
 		</div>
-		
+
 	</body>
+
 </html>

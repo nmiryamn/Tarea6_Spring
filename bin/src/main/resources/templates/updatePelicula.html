@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>CINE</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<style>
+			body{
+				background-image: url("https://wallpapercave.com/wp/wp4016022.jpg");
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+		</style>
+	</head>
+		<body class="card-body">
+		<div class="card text-white bg-dark mb-3">
+		  <div class="card-header">Datos de la película actualizada</div>
+		  <div class="card-body">
+				<form th:action="@{/actUpdatePelicula}" th:object="${newPelicula}" method="POST">
+					<input type="text" required="required" class="form-control" id="inpActorTitle" hidden name="id" th:value="${pelicula.id}">
+					<div class="form-group">
+			  			<label for="inpCarRegs">Nombre</label>
+			  			<input type="text" required="required" class="form-control" id="inpActorTitle" name="title" placeholder="Título" th:value="${pelicula.title}">
+					</div>
+					<div class="form-group">
+						  <label for="inpCarBrand">Año de lanzamiento</label>
+						  <input type="text" required="required" class="form-control" id="inpActorYear" name="year" placeholder="Año" th:value="${pelicula.year}">
+					</div>
+					<div class="form-group">
+						  <label for="inpCarModel">Duración</label>
+						  <input required="required" type="text" class="form-control" id="inpActorDuration" name="duration" placeholder="Duración" th:value="${pelicula.duration}">
+					</div>
+					<div class="form-group">
+						  <label for="inpCarBrand">Resumen</label>
+						  <input type="text" required="required" class="form-control" id="inpActorSummary" name="summary" placeholder="Resumen" th:value="${pelicula.summary}">
+					</div>
+					<button type="submit" name="btnUpdatePelicula" class="btn btn-success">Añadir</button>
+					<a class="btn btn-primary" href="index" role="button" id="aBtnReturn">Volver</a>
+				</form>
+			  </div>
+			</div>
+	</body>
+</html>

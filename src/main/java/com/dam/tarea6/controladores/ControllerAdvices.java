@@ -1,10 +1,17 @@
 package com.dam.tarea6.controladores;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
+
+import com.dam.tarea6.exception.InvalidDataException;
 
 /**
  * 
@@ -13,8 +20,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  */
 @ControllerAdvice
 public class ControllerAdvices {
-	
-	 //Capta cualquier excepción en los métodos de cualquier controlador.
 
 	/**
 	 * Método que controla las excepciones
@@ -31,6 +36,26 @@ public class ControllerAdvices {
 		System.out.println(e.getCause());
 
 		return "error";
+	}
+	
+	@ExceptionHandler(InvalidDataException.class)
+	public String invalidDataException(InvalidDataException ex, WebRequest request, Model model) {
+
+		List<String> listErrors = new ArrayList<String>();
+		
+      List<FieldError> errors = ex.getResult().getFieldErrors();
+   
+      for (FieldError error : errors) {
+          System.out.println(error.getDefaultMessage());
+          listErrors.add(error.getDefaultMessage());
+          
+      }
+      
+      model.addAttribute("errorMsg", listErrors);
+      
+      return "error";
+  
+	
 	}
 
 }

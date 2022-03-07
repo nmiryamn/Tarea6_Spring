@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.dam.tarea6.entidades.Actor;
 import com.dam.tarea6.entidades.ActorModelo;
 import com.dam.tarea6.entidades.Pelicula;
+import com.dam.tarea6.exception.InvalidDataException;
 import com.dam.tarea6.servicios.ActorServiceI;
 
 /**
@@ -161,14 +162,14 @@ public class ActorController {
 	private String aniadirActor(@Valid @ModelAttribute ActorModelo newActor, BindingResult result) throws Exception {
 		
 		if (result.hasErrors()) {			
-			throw new Exception("Parámetros de actor erróneos");
+			throw new InvalidDataException(result);
 		} else {
 			
 			Actor a = new Actor();
 			
-			a.setName(newActor.getName().toUpperCase());
-			a.setSurname(newActor.getSurname().toUpperCase());
-			a.setNationality(newActor.getNationality().toUpperCase());
+			a.setName(newActor.getName());
+			a.setSurname(newActor.getSurname());
+			a.setNationality(newActor.getNationality());
 			a.setBirthdate(newActor.getBirthdate());
 			
 			a.setActorPeliculas(null);
@@ -207,7 +208,7 @@ public class ActorController {
 	public String actualizaActores(@Valid @ModelAttribute Actor newActor, BindingResult result) throws Exception {
 		
 		if (result.hasErrors()) {
-			throw new Exception("Parámetros de actor erróneos");
+			throw new InvalidDataException(result);
 		} else {
 			// Se añade la nueva película
 			actorServiceI.actualizarActor(newActor);

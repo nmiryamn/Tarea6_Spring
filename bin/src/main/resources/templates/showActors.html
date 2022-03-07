@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>CINE</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<style>
+			body{
+				background-image: url("https://wallpapercave.com/wp/wp4016022.jpg");
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+		</style>
+	</head>
+	<body class="card-body">
+		<div class="card text-white bg-dark mb-3">
+		  	<div class="card-header">Actores</div>
+			<div class="card-body">
+				<table class="table table-striped table-dark">
+					<thead class="thead-light">
+						<tr>
+							<th scope="col">ID del actor</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Apellidos</th>
+							<th scope="col">Nacionalidad</th>
+							<th scope="col">Fecha de Nacimiento</th>
+							<th scope="col" th:hidden="${btnUpdateActorEnabled}">Actualizar</th>
+							<th scope="col" th:hidden="${btnDropActorEnabled}">Eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<th:block th:each="actor : ${actorsListView}">
+							<tr>
+								<td scope="row" th:text="${actor.id}" />
+								<td scope="row" th:text="${actor.name}" />
+								<td scope="row" th:text="${actor.surname}" />
+								<td scope="row" th:text="${actor.nationality}" />
+								<td scope="row" th:text="${actor.birthdate}" />
+								<td scope="row" th:hidden="${btnSetActorEnabled}">
+									<form action="actSetActor" method="post">
+										<button th:disabled="${btnUpdateActorEnabled}" type="submit"
+											id="btnUpdateActor" name="actorId" th:value="${actor.id}"
+											class="btn btn-success">✔</button>
+									</form>
+								</td>
+								<td scope="row" th:hidden="${btnDropActorEnabled}">
+									<form action="actDropActor" method="post">
+										<button th:disabled="${btnDropActorEnabled}" type="submit"
+											id="btnDropCar" name="actorId" th:value="${actor.id}"
+											class="btn btn-danger">❌</button>
+									</form>
+								</td>
+							</tr>
+						</th:block>
+					</tbody>
+				</table>
+				<a class="btn btn-primary" th:href="@{index}" id="aBtnReturn" role="button">Volver</a>
+			</div>
+		</div>
+	</body>
+</html>

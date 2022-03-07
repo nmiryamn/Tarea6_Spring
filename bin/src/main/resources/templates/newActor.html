@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>CINE</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<style>
+			body{
+				background-image: url("https://wallpapercave.com/wp/wp4016111.jpg");
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+		</style>
+	</head>
+		<body class="card-body">
+		<div class="card text-white bg-dark mb-3">
+		  <div class="card-header">Datos del nuevo actor</div>
+		  <div class="card-body">
+				<form th:action="@{/actAddActor}" th:object="${newActor}" method="POST">
+					<div class="form-group">
+			  			<label for="inpCarRegs">Nombre</label>
+			  			<input type="text" required="required" class="form-control" id="inpActorName" name="name" placeholder="Nombre">
+					</div>
+					<div class="form-group">
+						  <label for="inpCarBrand">Apellido</label>
+						  <input type="text" required="required" class="form-control" id="inpActorSurname" name="surname" placeholder="Apellido">
+					</div>
+					<div class="form-group">
+						  <label for="inpCarModel">Nacionalidad</label>
+						  <input required="required" type="text" class="form-control" id="inpActorNationality" name="nationality" placeholder="Nacionalidad">
+					</div>
+					<div class="form-group">
+						  <label for="inpCarBrand">Fecha de nacimiento</label>
+						  <input type="date" format="'yyyy-MM-dd'" required="required" class="form-control" id="inpActorBirthdate" name="birthdate" placeholder="Fecha de Nacimiento">
+					</div>
+					<button type="submit" name="btnAddActor" class="btn btn-success">Añadir</button>
+					<a class="btn btn-primary" href="index" role="button" id="aBtnReturn">Volver</a>
+				</form>
+			  </div>
+			</div>
+	</body>
+</html>

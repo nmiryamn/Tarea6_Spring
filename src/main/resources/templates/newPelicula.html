@@ -19,12 +19,12 @@
 		  <div class="card-body">
 				<form th:action="@{/actAddPelicula}" th:object="${newPelicula}" method="POST">
 					<div class="form-group">
-			  			<label for="inpCarRegs">Nombre</label>
+			  			<label for="inpCarRegs">Título</label>
 			  			<input type="text" required="required" class="form-control" id="inpActorTitle" name="title" placeholder="Título">
 					</div>
 					<div class="form-group">
 						  <label for="inpCarBrand">Año de lanzamiento</label>
-						  <input type="text" required="required" class="form-control" id="inpActorYear" name="year" placeholder="Año">
+						  <input type="number" required="required" class="form-control" id="inpActorYear" name="year" placeholder="Año">
 					</div>
 					<div class="form-group">
 						  <label for="inpCarModel">Duración</label>
